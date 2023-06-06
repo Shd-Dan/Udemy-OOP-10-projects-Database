@@ -34,6 +34,7 @@ def select_all():
     return result
 
 
+# select specific value
 def select_specific_column():
     connection = sqlite3.connect("cinema.db")
     cursor = connection.cursor()
@@ -45,6 +46,7 @@ def select_specific_column():
     return result
 
 
+# select value with condition
 def select_with_condition():
     connection = sqlite3.connect("cinema.db")
     cursor = connection.cursor()
@@ -54,3 +56,25 @@ def select_with_condition():
     result = cursor.fetchall()
     connection.close()
     return result
+
+
+# changing current values
+def update_value():
+    connection = sqlite3.connect("cinema.db")
+    connection.execute("""
+    UPDATE "Seat" SET "taken"=1 WHERE "seat_id"="A3"
+    """)
+    connection.commit()
+    connection.close()
+
+
+# delete value
+def delete_record():
+    connection = sqlite3.connect("cinema.db")
+    connection.execute("""
+    DELETE FROM "Seat" WHERE "seat_id"="A3"
+    """)
+    connection.commit()
+    connection.close()
+
+delete_record()
